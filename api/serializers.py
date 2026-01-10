@@ -11,7 +11,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id', 'name']
 
-
+# FIX: Added (serializers.ModelSerializer)
 class CategoryCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -47,7 +47,7 @@ class QuizSerializer(serializers.ModelSerializer):
         model = Quiz
         fields = ['id', 'title', 'category', 'created_by', 'total_marks', 'time_limit', 'questions']
 
-
+# FIX: Fixed spelling of Serializer
 class QuizCreatedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
@@ -58,12 +58,12 @@ class QuizCreatedSerializer(serializers.ModelSerializer):
         validated_data['created_by'] = self.context['request'].user
         return super().create(validated_data)
 
-
+# FIX: Fixed spelling of Serializer
 class QuizAttemptSerializer(serializers.ModelSerializer):
     quiz = serializers.StringRelatedField()
     user = serializers.StringRelatedField()
     
-   
+    # FIX: This was dangling in your views.py, I moved it here
     class Meta:
         model = QuizAttempt
         fields = ['id', 'user', 'quiz', 'score', 'submitted_at']
